@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"net/http/httptest"
@@ -13,10 +14,17 @@ import (
 var a App
 
 func TestMain(m *testing.M) {
-	err := a.Initialize(DbUser, DbPass, DbHost, DbPort, "test")
-	if err != nil {
-		log.Fatal(err)
+	user := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASSWORD")
+	host := os.Getenv("DB_HOST")
+	port := os.Getenv("DB_PORT")
+	dbname := os.Getenv("DB_NAME")
+	if user == "" || password == "" || host == "" || port == "" || dbname == "" {
+		fmt.Println("Missing required environment variables")
+		os.Exit(1)
 	}
+	a.Initialize(user, password, host, port, dbname)
+
 	CreateTable()
 	code := m.Run()
 	os.Exit(code)
