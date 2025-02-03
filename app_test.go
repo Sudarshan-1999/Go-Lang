@@ -82,15 +82,15 @@ func TestCreateProduct(t *testing.T) {
 		t.Fatalf("JSON Unmarshal error: %v. Raw body: %s", err, response.Body.String())
 	}
 	log.Printf("Parsed JSON: %+v", m)
-	if m["Name"] != "John Doe" {
+	if m["name"] != "John Doe" {
 		t.Errorf("Expected name to be 'John Doe'. Got '%v'", m["name"])
 	}
 
-	if quantity, ok := m["Quantity"].(float64); !ok || int(quantity) != 10 {
+	if quantity, ok := m["quantity"].(float64); !ok || int(quantity) != 10 {
 		t.Errorf("Expected quantity to be 10. Got '%v'", m["quantity"])
 	}
 
-	if price, ok := m["Price"].(float64); !ok || int(price) != 10 {
+	if price, ok := m["price"].(float64); !ok || int(price) != 10 {
 		t.Errorf("Expected price to be 10. Got '%v'", m["price"])
 	}
 }
@@ -142,14 +142,14 @@ func TestUpdateProduct(t *testing.T) {
 	if err != nil {
 		t.Fatalf("JSON Unmarshal error: %v. Raw body: %s", err, response.Body.String())
 	}
-	if oldValue["Name"] != newValue["Name"] {
-		log.Printf("Name Got updated. Got '%v' '%v'", oldValue["Name"], newValue["Name"])
+	if oldValue["name"] != newValue["name"] {
+		log.Printf("Name Got updated. Got '%v' '%v'", oldValue["name"], newValue["name"])
 	}
-	if oldValue["Quantity"] != newValue["Quantity"] {
-		log.Printf("Quantity Got updated. Got '%v'  '%v'", oldValue["Quantity"], newValue["Quantity"])
+	if oldValue["quantity"] != newValue["quantity"] {
+		log.Printf("Quantity Got updated. Got '%v'  '%v'", oldValue["quantity"], newValue["quantity"])
 	}
-	if oldValue["Price"] != newValue["Price"] {
-		log.Printf("Price Got updated. Got '%v' '%v'", oldValue["Price"], newValue["Price"])
+	if oldValue["price"] != newValue["price"] {
+		log.Printf("Price Got updated. Got '%v' '%v'", oldValue["price"], newValue["price"])
 	}
 }
 
