@@ -8,10 +8,10 @@ import (
 )
 
 type product struct {
-	ID       int     "json:id"
-	Name     string  "json:name"
-	Quantity int     "json:quantity"
-	Price    float64 "json:price"
+	ID       int     `json:"id"`
+	Name     string  `json:"name"`
+	Quantity int     `json:"quantity"`
+	Price    float64 `json:"price"`
 }
 
 func getProducts(db *sql.DB) ([]product, error) {
