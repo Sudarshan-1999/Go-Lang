@@ -13,7 +13,7 @@ import (
 var a App
 
 func TestMain(m *testing.M) {
-	err := a.Initialize(main.DbUser, main.DbPass, main.DbHost, main.DbPort, "test")
+	err := a.Initialize(DbUser, DbPass, DbHost, DbPort, "test")
 	if err != nil {
 		log.Fatal(err)
 	}
